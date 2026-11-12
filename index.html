@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+<!-- 讓 LINE 或其他通訊軟體預覽時顯示正確標題與最新文案描述 -->
+<meta property="og:title" content="✨🔮紫靈牌卡 ✦ 線上占卜🔮✨">
+<meta property="og:description" content="嗨，歡迎你來到這裡。現在，請試著清空思緒、在心中默念你的問題，並選擇喜歡的占卜方式。">
+
+<title>✨🔮 紫靈牌卡 ✦ 線上占卜 🔮✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#fcf8fd; --bg2:#f3edf7; --glow:rgba(215,180,255,.45);
+  --text:#423b4a; --muted:#84788f; --line:#e6deee;
+  --card:#ffffff; --accent:#9d7fb2; --accent-d:#7e5d95; --btn-text:#fff;
+  --shadow:0 10px 30px rgba(130,100,150,.14);
+  --t0:#8a6fc0; --t1:#c47a58; --t2:#5a9a82;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei","Hiragino Mincho ProN",serif;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(200, 170, 235, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(220, 195, 245, 0.15) 0%, transparent 40%),
+    linear-gradient(135deg, rgba(157, 127, 178, 0.04) 0%, rgba(126, 93, 149, 0.08) 100%),
+    radial-gradient(ellipse 80% 45% at 50% -5%, var(--glow), transparent 70%), 
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  background-color: var(--bg1);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 背景極細星空幾何裝飾層 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 30%, transparent 58%, rgba(157, 127, 178, 0.08) 59%, transparent 60%),
+    radial-gradient(circle at 50% 30%, transparent 78%, rgba(157, 127, 178, 0.05) 79%, transparent 80%),
+    radial-gradient(circle at 20% 15%, rgba(157, 127, 178, 0.3) 1.5px, transparent 2px),
+    radial-gradient(circle at 82% 25%, rgba(157, 127, 178, 0.25) 1px, transparent 2px),
+    radial-gradient(circle at 15% 75%, rgba(157, 127, 178, 0.25) 1px, transparent 2px),
+    radial-gradient(circle at 88% 70%, rgba(157, 127, 178, 0.3) 1.5px, transparent 2px),
+    radial-gradient(circle at 50% 85%, rgba(157, 127, 178, 0.2) 1px, transparent 2px);
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main{max-width:900px; margin:0 auto; padding:56px 20px 64px; text-align:center; position:relative; z-index:1;}
+
+/* 副標題設計 */
+.sub-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--accent-d);
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', "Noto Serif TC", serif;
+}
+.sub-title::before, .sub-title::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 1px;
+  background: var(--accent-d);
+  opacity: 0.6;
+}
+
+/* 主標題：手機版不換行 */
+h1{
+  font-weight: 700; 
+  font-size: clamp(20px, 4.8vw, 40px); 
+  letter-spacing: .15em; 
+  margin: 0 0 24px; 
+  white-space: nowrap;
+}
+
+/* 說明文字：指定分段換行 */
+.hint{
+  color:var(--muted); 
+  font-size:15px; 
+  line-height:2.0; 
+  letter-spacing:.08em; 
+  margin:0 auto 30px; 
+  max-width:32em;
+  white-space: pre-line;
+}
+
+.btn-group{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:10px;}
+.btn{
+  font-family:inherit; font-size:17px; letter-spacing:.15em; padding:12px 30px; border:none; border-radius:999px; cursor:pointer;
+  color:#fff; box-shadow:0 8px 22px rgba(0,0,0,.12); transition:transform .15s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+/* 一鍵抽卡 (暖橘色) */
+.btn-orange{
+  background: linear-gradient(135deg, #e09f6b, #c47a58);
+  box-shadow: 0 8px 22px rgba(196,122,88,0.3);
+}
+/* 手動抽卡 (紫靈質感紫色) */
+.btn-purple{
+  background: linear-gradient(135deg, var(--accent), var(--accent-d));
+  box-shadow: 0 8px 22px rgba(126,93,149,0.3);
+}
+
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:scale(.98)} .btn:disabled{opacity:.7;cursor:default}
+
+.snd-group{
+  position:fixed; right:14px; top:calc(env(safe-area-inset-top,0px) + 12px); z-index:5;
+  display:flex; gap:8px;
+}
+.snd{
+  font-family:inherit; font-size:12px; color:var(--muted); background:var(--card); border:1px solid var(--line);
+  border-radius:999px; padding:6px 10px; cursor:pointer;
+}
+
+.cards{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:42px 0 26px; perspective:1000px;
+}
+.slot{aspect-ratio:3/4.3; position:relative}
+.ph{position:absolute; inset:0; border:1.5px dashed var(--line); border-radius:20px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:14px; letter-spacing:.2em; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px);}
+.card{
+  position:absolute; inset:0; background:var(--card); border-radius:20px; box-shadow:var(--shadow); border:1px solid var(--line);
+  overflow:hidden; display:flex; flex-direction:column; align-items:center; padding:16px 14px 0;
+  animation:flip .7s cubic-bezier(.2,.8,.3,1) both;
+  background-image:linear-gradient(180deg,color-mix(in srgb,var(--tone) 9%,var(--card)),var(--card) 55%);
+}
+.t0{--tone:var(--t0)} .t1{--tone:var(--t1)} .t2{--tone:var(--t2)}
+.head{width:100%; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1}
+.cat{font-size:13px; letter-spacing:.25em; color:var(--tone); font-weight:600}
+.ibox{
+  width:34%; max-width:110px; aspect-ratio:1; margin:16px 0 14px; border-radius:24%; color:var(--tone); position:relative; z-index:1;
+  background:color-mix(in srgb,var(--tone) 14%,var(--card)); border:1px solid color-mix(in srgb,var(--tone) 28%,transparent);
+  display:flex; align-items:center; justify-content:center;
+}
+.ibox svg{width:64%; height:64%}
+.name{font-size:clamp(28px,4.6vw,40px); font-weight:700; letter-spacing:.1em; padding-left:.1em; position:relative; z-index:1}
+.kw{font-size:13.5px; letter-spacing:.06em; color:var(--tone); margin-top:8px; font-weight:600; position:relative; z-index:1; line-height:1.6}
+.sky{position:absolute; left:0; right:0; bottom:0; width:100%; height:34%; color:var(--tone); opacity:.32; pointer-events:none}
+@keyframes flip{from{opacity:0; transform:rotateY(90deg) translateY(10px)} to{opacity:1; transform:none}}
+
+/* 動作按鈕區：雙排設計 */
+.actions{min-height:52px; display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:10px;}
+.action-row{display:flex; justify-content:center; gap:12px; flex-wrap:wrap; width:100%;}
+.action-btn{
+  font-family:inherit; font-size:15px; letter-spacing:.15em; padding:10px 22px; background:var(--card); 
+  color:var(--accent-d); border:1.5px solid var(--accent); border-radius:999px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px; transition:background .15s; box-shadow: 0 4px 12px rgba(130,100,150,0.08);
+}
+.action-btn:hover{background:rgba(157,127,178,.15)}
+
+.consultant-tip{
+  font-size: 13.5px;
+  color: var(--accent-d);
+  letter-spacing: 0.08em;
+  margin: 6px 0 2px;
+  opacity: 0.9;
+}
+
+.toast{width:100%; height:22px; font-size:14px; color:var(--accent-d); letter-spacing:.1em}
+[hidden]{display:none!important}
+
+/* 手動選牌彈跳視窗 */
+#manual-modal{
+  position:fixed; inset:0; background:rgba(42,35,48,0.75); backdrop-filter:blur(6px);
+  z-index:50; display:flex; justify-content:center; align-items:center; padding:20px; overflow-y:auto;
+}
+.modal-box{
+  background:var(--bg1); width:100%; max-width:750px; border-radius:24px; padding:28px 20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.3); border:1px solid var(--line); text-align:left;
+  max-height:90vh; overflow-y:auto;
+}
+.modal-title{font-size:20px; font-weight:700; letter-spacing:.2em; text-align:center; margin-bottom:6px; color:var(--text)}
+.modal-subtitle{font-size:13px; color:var(--muted); text-align:center; letter-spacing:.1em; margin-bottom:24px}
+.deck-section{margin-bottom:20px}
+.deck-label{font-size:14px; font-weight:600; color:var(--text); letter-spacing:.1em; margin-bottom:8px; border-left:3px solid var(--accent); padding-left:8px}
+.deck-scroll{
+  display:flex; gap:8px; overflow-x:auto; padding:6px 2px 12px; scroll-behavior:smooth;
+  scrollbar-width:thin; scrollbar-color: var(--accent) var(--line);
+}
+
+.card-back{
+  flex:0 0 54px; height:78px; 
+  background: linear-gradient(135deg, #201a24, #312838); 
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line)); 
+  border-radius:8px;
+  cursor:pointer; position:relative; transition:transform .15s, border-color .15s; 
+  display:flex; flex-direction:column; align-items:center; justify-content:center; color: #d1bce3;
+}
+.card-back:hover{transform:translateY(-3px); border-color: var(--accent);}
+.card-back.selected{
+  border:2px solid var(--accent-d); box-shadow:0 0 12px rgba(126,93,149,0.6); transform:translateY(-4px);
+}
+.card-back.selected::after{
+  content:'✓'; position:absolute; top:-6px; right:-6px; background:var(--accent-d); color:#fff;
+  font-size:10px; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+.modal-actions{display:flex; justify-content:center; gap:14px; margin-top:24px}
+
+footer{
+  margin-top: 48px;
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+/* 手機版排版調整 */
+@media (max-width:640px){
+  main{padding-top:48px; padding-left:14px; padding-right:14px}
+  .cards{
+    display:grid; grid-template-columns: repeat(2, 1fr); max-width: 380px; margin-left: auto; margin-right: auto; gap: 12px;
+  }
+  .cards .slot:nth-child(3){
+    grid-column: 1 / -1; max-width: 180px; margin: 0 auto; width: 100%;
+  }
+  .slot{aspect-ratio:3/4.3}
+}
+@media (prefers-reduced-motion:reduce){.card{animation:none}}
+</style>
+</head>
+<body>
+<div class="snd-group">
+  <button class="snd" id="bgm-btn" type="button" aria-pressed="true">♫ 背景音樂 開</button>
+  <button class="snd" id="snd-btn" type="button" aria-pressed="true">♪ 抽卡音效 開</button>
+</div>
+
+<main>
+  <div class="sub-title">Purpling Cards</div>
+  <h1>✨🔮 紫靈牌卡 ✦ 線上占卜 🔮✨</h1>
+  
+  <div id="welcome-section">
+    <p class="hint">嗨，歡迎你來到這裡。
+現在，請試著清空思緒、在心中默念你的問題，
+並選擇喜歡的占卜方式。</p>
+    
+    <div class="btn-group">
+      <button class="btn btn-orange" id="draw-quick" type="button">☽ 一鍵抽卡</button>
+      <button class="btn btn-purple" id="draw-manual" type="button">✧ 手動抽卡</button>
+    </div>
+  </div>
+
+  <section class="cards" id="cards" aria-live="polite">
+    <div class="slot"><div class="ph">主星</div></div>
+    <div class="slot"><div class="ph">輔星</div></div>
+    <div class="slot"><div class="ph">長生</div></div>
+  </section>
+
+  <div class="actions" id="actions" hidden>
+    <div class="consultant-tip">*記得把結果傳給你的占卜師，讓他為你解答：）</div>
+    <div class="action-row">
+      <button class="action-btn" id="copy" type="button">複製結果文字</button>
+      <button class="action-btn" id="save-img" type="button">儲存圖片</button>
+      <button class="action-btn" id="share-site" type="button">分享此網站</button>
+    </div>
+    <div class="action-row" style="margin-top: 4px;">
+      <button class="action-btn" id="reset-draw" type="button" style="border-color: #c47a58; color: #c47a58;">↺ 再抽一次</button>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+
+  <footer>Made with 💜 by YAN-HAN</footer>
+</main>
+
+<!-- 手動選牌彈跳視窗 -->
+<div id="manual-modal" hidden>
+  <div class="modal-box">
+    <div class="modal-title">手動選牌</div>
+    <div class="modal-subtitle">請從每組牌堆中各選擇一張卡片</div>
+    
+    <div class="deck-section">
+      <div class="deck-label" id="lbl-m">主星牌 (14張) - 已選 0/1</div>
+      <div class="deck-scroll" id="deck-main"></div>
+    </div>
+    
+    <div class="deck-section">
+      <div class="deck-label" id="lbl-a">輔星牌 (18張) - 已選 0/1</div>
+      <div class="deck-scroll" id="deck-aux"></div>
+    </div>
+    
+    <div class="deck-section">
+      <div class="deck-label" id="lbl-l">長生牌 (12張) - 已選 0/1</div>
+      <div class="deck-scroll" id="deck-life"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-purple" id="modal-confirm" type="button" disabled style="opacity:0.5;">確認抽牌</button>
+      <button class="btn btn-orange" id="modal-cancel" type="button">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const I = {
+紫微:'<path d="M12 48h40M12 48L9 22l14 12 9-16 9 16 14-12-3 26z"/><path d="M32 8v4M20 10l2 3M44 10l-2 3"/>',
+天府:'<rect x="10" y="14" width="44" height="36" rx="4"/><circle cx="32" cy="32" r="9"/><path d="M32 26v12M26 32h12M18 50v4M46 50v4"/>',
+天機:'<circle cx="24" cy="40" r="8"/><path d="M24 26v5M24 49v5M10 40h5M33 40h5M14 30l4 4M30 46l4 4M14 50l4-4M30 34l4-4"/><path d="M36 30l18-14 5 7-18 14z"/>',
+太陰:'<path d="M44 10a22 22 0 1 0 10 34A18 18 0 0 1 44 10z"/><path d="M50 12v8M46 16h8"/>',
+七殺:'<path d="M16 30a16 16 0 0 1 32 0c0 6-3 9-6 11v7H22v-7c-3-2-6-5-6-11z"/><circle cx="25" cy="30" r="3.5"/><circle cx="39" cy="30" r="3.5"/><path d="M32 36v4M28 48v-5M36 48v-5"/>',
+破軍:'<path d="M14 38a18 18 0 0 1 36 0z"/><path d="M10 38h44M32 20v-12M32 8l14 4-14 4M20 46h24M26 54h12"/>',
+貪狼:'<path d="M10 8h22l-2 16a9 9 0 0 1-18 0z"/><path d="M21 33v18M13 53h16"/><circle cx="48" cy="28" r="4"/><circle cx="54" cy="35" r="4"/><circle cx="51" cy="43" r="4"/><circle cx="43" cy="43" r="4"/><circle cx="41" cy="35" r="4"/>',
+天梁:'<path d="M32 8v44M20 52h24M8 20h48"/><path d="M8 20l-5 16h10zM56 20l-5 16h10z"/><path d="M3 36a5 5 0 0 0 10 0M51 36a5 5 0 0 0 10 0"/>',
+天同:'<circle cx="32" cy="35" r="18"/><path d="M32 17c-6-4-2-9 3-7"/><circle cx="25" cy="33" r="1.8"/><circle cx="39" cy="33" r="1.8"/><path d="M26 42a8 6 0 0 0 12 0"/>',
+廉貞:'<circle cx="32" cy="18" r="9"/><path d="M12 56c0-14 8-22 20-22s20 8 20 22z"/><path d="M32 36l-4 6 4 14 4-14z"/>',
+太陽:'<circle cx="32" cy="32" r="11"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8M14 14l6 6M44 44l6 6M14 50l6-6M44 20l6-6"/>',
+武曲:'<rect x="8" y="28" width="48" height="26" rx="3"/><path d="M8 36h48M28 36v8h8v-8"/><circle cx="32" cy="16" r="7"/><path d="M32 12v8M29 14h6"/>',
+天相:'<path d="M4 24l12-6 16 5 16-5 12 6v14l-10 4-8 9-6-4-6 4-8-9-10-4z"/><path d="M22 34l8 8M31 30l10 10"/>',
+巨門:'<path d="M16 54V24a16 16 0 0 1 32 0v30M10 54h44M32 8v46"/><circle cx="26" cy="36" r="1.8"/><circle cx="38" cy="36" r="1.8"/>',
+祿存:'<ellipse cx="32" cy="18" rx="17" ry="6"/><path d="M15 18v10c0 3 8 6 17 6s17-3 17-6V18M15 28v10c0 3 8 6 17 6s17-3 17-6V28M15 38v9c0 3 8 6 17 6s17-3 17-6v-9"/>',
+天馬:'<path d="M22 56l4-20-12-10 6-16 10 6 14-4 6 14-8 6-2 24"/><circle cx="35" cy="20" r="1.8"/><path d="M20 10l-4-4"/>',
+地空:'<path d="M18 46a10 10 0 0 1 0-20 14 14 0 0 1 27-3 11 11 0 0 1 2 23z"/><path d="M22 54h20"/>',
+地劫:'<path d="M4 20q7-8 14 0t14 0 14 0 14 0M4 33q7-8 14 0t14 0 14 0 14 0M4 46q7-8 14 0t14 0 14 0 14 0"/>',
+鈴星:'<circle cx="20" cy="40" r="12"/><circle cx="44" cy="40" r="12"/><path d="M20 28l4-14h16l4 14"/><path d="M30 40h4"/>',
+火星:'<path d="M6 56l18-30h16l18 30z"/><path d="M24 26l-4-10M32 24V8M40 26l4-10M26 40l6 6 6-6"/>',
+擎羊:'<path d="M32 6l7 30H25z"/><path d="M18 36h28M32 36v16"/><circle cx="32" cy="56" r="2.5"/>',
+化權:'<path d="M20 56V36M44 56V32M8 56h48"/><circle cx="20" cy="24" r="12"/><circle cx="44" cy="20" r="10"/>',
+化祿:'<path d="M8 32h48c0 14-10 22-24 22S8 46 8 32z"/><circle cx="22" cy="23" r="6"/><circle cx="42" cy="23" r="6"/><circle cx="32" cy="13" r="6"/>',
+化科:'<path d="M32 58V34"/><path d="M32 34L16 14M32 34L12 26M32 34l-3-26M32 34l16-20M32 34l20 12M32 34L14 44M32 34l10 18"/><circle cx="16" cy="14" r="2"/><circle cx="12" cy="26" r="2"/><circle cx="29" cy="8" r="2"/><circle cx="48" cy="14" r="2"/>',
+化忌:'<circle cx="32" cy="32" r="13" fill="currentColor" fill-opacity=".85"/><circle cx="32" cy="32" r="21"/><path d="M32 4v4M32 56v4M4 32h4M56 32h4"/>',
+天鉞:'<circle cx="32" cy="32" r="14"/><circle cx="32" cy="12" r="6"/><path d="M26 30h3M35 30h3M27 39q5 3 10 0M16 56c2-8 8-10 16-10s14 2 16 10"/>',
+天魁:'<circle cx="32" cy="24" r="12"/><path d="M20 30c-2 14 6 26 12 26s14-12 12-26"/><path d="M26 22h4M34 22h4M27 36q5 3 10 0"/>',
+左輔:'<circle cx="32" cy="30" r="14"/><path d="M18 28c0-12 8-16 15-15 7 0 13 5 13 15-4-6-10-8-14-8s-10 2-14 8z"/><circle cx="27" cy="33" r="1.6"/><circle cx="37" cy="33" r="1.6"/><path d="M28 40q4 3 8 0M14 58c2-8 8-10 18-10s16 2 18 10"/>',
+右弼:'<circle cx="32" cy="28" r="12"/><path d="M20 28c0-14 8-18 12-18s12 4 12 18v22c-3 0-4-3-4-8M20 28v22c3 0 4-3 4-8"/><circle cx="27" cy="30" r="1.6"/><circle cx="37" cy="30" r="1.6"/><path d="M28 36q4 3 8 0"/>',
+文昌:'<path d="M50 8l6 6-24 24-6-6z"/><path d="M26 32c-6 2-8 8-10 14-2 4 2 6 6 4 6-2 12-6 12-12"/><path d="M10 56h24"/>',
+文曲:'<path d="M8 50L50 8l6 6L14 56z"/><circle cx="28" cy="30" r="1.8"/><circle cx="35" cy="23" r="1.8"/><circle cx="42" cy="16" r="1.8"/><path d="M48 44v-10l8-2v10"/>',
+陀羅:'<path d="M12 18h40M16 18c0 14 8 24 16 38 8-14 16-24 16-38M32 6v12M20 28h24"/>',
+長生:'<path d="M32 56V32M32 38c-2-10-10-12-18-10 2 10 10 12 18 10zM32 32c2-10 10-14 18-12-2 10-10 14-18 12z"/><path d="M16 56h32"/>',
+沐浴:'<circle cx="24" cy="38" r="14"/><circle cx="44" cy="20" r="8"/><circle cx="46" cy="46" r="5"/><path d="M17 32a8 8 0 0 1 6-6"/>',
+冠帶:'<path d="M26 8l12-2-2 10 3 6-7 32-7-32 3-6z"/><path d="M26 8l-8 6 14 10M38 8l8 6-14 10"/>',
+臨官:'<path d="M18 42c0-14 6-24 14-24s14 10 14 24z"/><path d="M6 36l12 6M58 36L46 42M10 50h44M26 30h12"/>',
+帝旺:'<path d="M12 50h40M12 50L9 26l14 12 9-16 9 16 14-12-3 24z"/><path d="M32 6v6M18 8l3 4M46 8l-3 4"/>',
+衰:'<path d="M12 50C12 26 28 12 54 10c0 28-14 42-42 40z"/><path d="M12 50L40 24M30 38l-2-10M38 30l2 8"/>',
+病:'<path d="M32 56V34M32 42l-12-12M32 34l10-12M20 30l-6-4M42 22l6-6M32 26l-4-10M32 26l6-8M18 56h28"/>',
+死:'<ellipse cx="32" cy="34" rx="16" ry="7"/><path d="M16 34v14c0 4 7 7 16 7s16-3 16-7V34"/><ellipse cx="32" cy="34" rx="8" ry="3"/><path d="M42 18l10-10M46 22l8-8"/>',
+墓:'<path d="M27 6h10v14h13v10H37v28H27V30H14V20h13z"/>',
+絕:'<rect x="8" y="8" width="48" height="48" rx="3"/><path d="M20 8v24h12V20h12v24H32v12M8 44h12M44 32h12"/>',
+胎:'<circle cx="32" cy="32" r="24"/><circle cx="27" cy="26" r="8"/><path d="M34 30c10 2 14 12 6 18-6 4-14 2-16-4"/>',
+養:'<path d="M14 28h36l-4 26H18z"/><path d="M10 28h44M22 40h20"/><path d="M26 18q6-6 12 0" stroke-dasharray="2 4"/>'
+};
+
+const MAIN=[["紫微","尊貴・領導・統御"],["天府","穩重・庫藏・守成"],["天機","機智・謀略・變動"],["太陰","緩慢・收斂・累積"],["七殺","果決・孤勇・肅殺"],["破軍","突破・衝勁・開創"],["貪狼","慾望・桃花・多才"],["天梁","蔭庇・清高・化解"],["天同","福氣・小孩・享受"],["廉貞","交際・原則・感性"],["太陽","熱情・名氣・無私"],["武曲","執行力・剛毅・果決"],["天相","輔佐・連結・影響"],["巨門","口才・暗藏・蒐集"]];
+const AUX=[["祿存","守財・穩定・保守"],["天馬","奔波・遷動・機會"],["地空","落空・反潮流・期望過高"],["地劫","冒險・投機・耗散"],["鈴星","焦躁・壓力・突發"],["火星","爆發・衝動・熱烈"],["擎羊","鋒利・競爭・衝突"],["化權","成雙・主導・強勢"],["化祿","財運・緣分・豐富"],["化科","名聲・貴人・文雅"],["化忌","焦慮・欠缺・執著"],["天鉞","女貴人・政府・考運"],["天魁","男貴人・政府・考運"],["左輔","男助力・平輩・桃花"],["右弼","女助力・平輩・桃花"],["文昌","文才・考試・理性"],["文曲","才藝・口才・感性"],["陀羅","拖延・糾纏・固執"]];
+const LIFE=[["長生","萌芽・新生・希望",1],["沐浴","洗禮・不穩・桃花",2],["冠帶","成長・裝扮・展現",3],["臨官","事業・自立・上任",4],["帝旺","巔峰・強盛・權威",5],["衰","轉折・退守・沉澱",6],["病","疲憊・弱點・警訊",7],["死","終止・斷捨・放下",8],["墓","收藏・沉潛・積累",9],["絕","絕處・迷茫・轉機",10],["胎","孕育・潛伏・醞釀",11],["養","蓄養・等待・準備",12]];
+
+const SKY='<svg class="sky" viewBox="0 0 200 80" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="100" cy="78" r="46"/><circle cx="100" cy="78" r="34" stroke-dasharray="2 4"/><path d="M100 32l40 69H60zM60 55h80l-40 69z" transform="translate(0 -24)"/><path d="M24 22l4 8 8 4-8 4-4 8-4-8-8-4 8-4zM170 14l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="currentColor" stroke="none"/><circle cx="46" cy="52" r="1.4" fill="currentColor"/><circle cx="154" cy="46" r="1.4" fill="currentColor"/><circle cx="70" cy="14" r="1.2" fill="currentColor"/><circle cx="132" cy="22" r="1.2" fill="currentColor"/><circle cx="184" cy="60" r="1.4" fill="currentColor"/><circle cx="14" cy="66" r="1.2" fill="currentColor"/><path d="M24 30L46 52M154 46l16-26" stroke-opacity=".6"/></svg>';
+
+function rnd(n){try{const a=new Uint32Array(1),l=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=l);return a[0]%n}catch(e){return Math.floor(Math.random()*n)}}
+const pick=a=>a[rnd(a.length)];
+
+function cardHTML(i,cat,s,delay){
+  return '<div class="slot"><div class="card t'+i+'" style="animation-delay:'+delay+'s">'+SKY+
+    '<div class="head"><span class="cat">'+cat+'</span><span></span></div>'+
+    '<div class="ibox"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+I[s[0]]+'</svg></div>'+
+    '<div class="name">'+s[0]+(s[2]||"")+'</div><div class="kw">'+s[1]+'</div></div></div>';
+}
+
+let ctx=null, mutedSnd=false;
+function sound(){
+  if(mutedSnd)return;
+  try{
+    ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();
+    if(ctx.state==="suspended")ctx.resume();
+    const t=ctx.currentTime;
+    const n=Math.floor(ctx.sampleRate*.35), b=ctx.createBuffer(1,n,ctx.sampleRate), d=b.getChannelData(0);
+    for(let i=0;i<n;i++) d[i]=(Math.random()*2-1)*Math.sin(Math.PI*i/n);
+    const src=ctx.createBufferSource(); src.buffer=b;
+    const filt=ctx.createBiquadFilter(); filt.type="bandpass";
+    filt.frequency.setValueAtTime(800, t); filt.frequency.exponentialRampToValueAtTime(2400, t+.35); filt.Q.value=1.2;
+    const gainNode=ctx.createGain();
+    gainNode.gain.setValueAtTime(0.001, t); gainNode.gain.linearRampToValueAtTime(0.08, t+.05); gainNode.gain.exponentialRampToValueAtTime(0.001, t+.35);
+    src.connect(filt).connect(gainNode).connect(ctx.destination); src.start(t);
+
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type="sine"; o.frequency.setValueAtTime(1046.5, t+.1);
+    g.gain.setValueAtTime(0, t+.1); g.gain.linearRampToValueAtTime(0.04, t+.12); g.gain.exponentialRampToValueAtTime(0.0001, t+.8);
+    o.connect(g).connect(ctx.destination); o.start(t+.1); o.stop(t+.85);
+  }catch(e){}
+}
+
+let bgmCtx=null, bgmInterval=null, mutedBgm=false;
+function startBgm(){
+  if(mutedBgm) return;
+  try{
+    bgmCtx = bgmCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if(bgmCtx.state==="suspended") bgmCtx.resume();
+    
+    const melodyNotes = [523.25, 659.25, 783.99, 880.00, 1046.50, 1318.51];
+    
+    const playArpeggio = () => {
+      if(mutedBgm || !bgmCtx) return;
+      let t = bgmCtx.currentTime;
+      
+      for(let i=0; i<4; i++){
+        const freq = melodyNotes[Math.floor(Math.random() * melodyNotes.length)];
+        const osc = bgmCtx.createOscillator();
+        const gain = bgmCtx.createGain();
+        
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        
+        const noteTime = t + (i * 0.5);
+        gain.gain.setValueAtTime(0.000001, noteTime);
+        gain.gain.linearRampToValueAtTime(0.010, noteTime + 5.0);
+        gain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 6.2);
+        
+        osc.connect(gain).connect(bgmCtx.destination);
+        osc.start(noteTime);
+        osc.stop(noteTime + 6.5);
+      }
+    };
+
+    playArpeggio();
+    if(bgmInterval) clearInterval(bgmInterval);
+    bgmInterval = setInterval(playArpeggio, 6000);
+  }catch(e){}
+}
+
+function stopBgm(){
+  if(bgmInterval) { clearInterval(bgmInterval); bgmInterval = null; }
+  if(bgmCtx && bgmCtx.state === "running") { bgmCtx.suspend(); }
+}
+
+window.addEventListener('load', () => {
+  if(!mutedBgm) {
+    startBgm();
+  }
+});
+window.addEventListener('pointerdown', () => {
+  if(!mutedBgm && bgmCtx && bgmCtx.state === "suspended") {
+    bgmCtx.resume();
+  }
+}, { once: true });
+
+let cur=null, drawTime="", busy=false, tt;
+const $c=document.getElementById("cards"), $a=document.getElementById("actions"), $t=document.getElementById("toast");
+const $welcome = document.getElementById("welcome-section");
+const $btnQuick = document.getElementById("draw-quick"), $btnManual = document.getElementById("draw-manual");
+const $modal = document.getElementById("manual-modal");
+const $deckMain = document.getElementById("deck-main"), $deckAux = document.getElementById("deck-aux"), $deckLife = document.getElementById("deck-life");
+const $modalConfirm = document.getElementById("modal-confirm"), $modalCancel = document.getElementById("modal-cancel");
+
+let selectedMain = null, selectedAux = null, selectedLife = null;
+
+function getFormattedTime() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  const h = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+  return `${y}/${m}/${d} ${h}:${min}`;
+}
+
+function showResultView(){
+  $welcome.hidden = true;
+  $a.hidden = false;
+}
+
+function resetDraw(){
+  cur = null;
+  $welcome.hidden = false;
+  $a.hidden = true;
+  $c.innerHTML = '<div class="slot"><div class="ph">主星</div></div><div class="slot"><div class="ph">輔星</div></div><div class="slot"><div class="ph">長生</div></div>';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function quickDraw(){
+  if(busy)return; busy=true;
+  $btnQuick.disabled=true; $btnManual.disabled=true;
+  const m=pick(MAIN), a=pick(AUX), l=pick(LIFE); 
+  cur={m,a,l};
+  drawTime = getFormattedTime();
+  sound();
+  showResultView();
+  $c.innerHTML=cardHTML(0,"主星",m,0)+cardHTML(1,"輔星",a,.18)+cardHTML(2,"長生",l,.36);
+  $t.textContent="";
+  setTimeout(()=>{busy=false; $btnQuick.disabled=false; $btnManual.disabled=false;},1000);
+}
+
+function openManualModal(){
+  selectedMain = null; selectedAux = null; selectedLife = null;
+  updateModalState();
+  buildDeck($deckMain, MAIN, 'main');
+  buildDeck($deckAux, AUX, 'aux');
+  buildDeck($deckLife, LIFE, 'life');
+  $modal.hidden = false;
+}
+
+function buildDeck(container, dataArr, type){
+  container.innerHTML = '';
+  dataArr.forEach((item) => {
+    const el = document.createElement('div');
+    el.className = 'card-back';
+    el.innerHTML = '<svg style="width:26px;height:26px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity="0.3"/></svg>';
+    el.onclick = () => {
+      container.querySelectorAll('.card-back').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      if(type==='main') selectedMain = item;
+      if(type==='aux') selectedAux = item;
+      if(type==='life') selectedLife = item;
+      updateModalState();
+    };
+    container.appendChild(el);
+  });
+}
+
+function updateModalState(){
+  document.getElementById('lbl-m').textContent = `主星牌 (14張) - 已選 ${selectedMain ? 1 : 0}/1`;
+  document.getElementById('lbl-a').textContent = `輔星牌 (18張) - 已選 ${selectedAux ? 1 : 0}/1`;
+  document.getElementById('lbl-l').textContent = `長生牌 (12張) - 已選 ${selectedLife ? 1 : 0}/1`;
+
+  if(selectedMain && selectedAux && selectedLife){
+    $modalConfirm.disabled = false;
+    $modalConfirm.style.opacity = '1';
+  } else {
+    $modalConfirm.disabled = true;
+    $modalConfirm.style.opacity = '0.5';
+  }
+}
+
+function confirmManualDraw(){
+  if(!selectedMain || !selectedAux || !selectedLife) return;
+  cur = { m: selectedMain, a: selectedAux, l: selectedLife };
+  drawTime = getFormattedTime();
+  $modal.hidden = true;
+  sound();
+  showResultView();
+  $c.innerHTML = cardHTML(0,"主星",cur.m,0) + cardHTML(1,"輔星",cur.a,.18) + cardHTML(2,"長生",cur.l,.36);
+  $t.textContent = "";
+}
+
+function toast(m){$t.textContent=m;clearTimeout(tt);tt=setTimeout(()=>{$t.textContent=""},2200)}
+function fb(text){const ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;left:-9999px;top:0;opacity:0";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);let ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);return ok}
+async function copy(){
+  if(!cur)return;
+  const text="【✨🔮紫靈牌卡 ✦ 線上占卜🔮✨】\n占卜時間："+drawTime+"\n主星："+cur.m[0]+"（"+cur.m[1]+"）\n輔星："+cur.a[0]+"（"+cur.a[1]+"）\n長生："+cur.l[0]+cur.l[2]+"（"+cur.l[1]+"）";
+  let ok=false;
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);ok=true}}catch(e){}
+  if(!ok)ok=fb(text);
+  toast(ok?"已複製結果文字 ✓":"複製失敗，請手動選取文字");
+}
+
+async function shareWebsite(){
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: '✨🔮 紫靈牌卡 ✦ 線上占卜 🔮✨',
+        text: '邀請你一起來體驗精準優雅的紫靈牌卡線上占卜：',
+        url: window.location.href
+      });
+      toast("分享成功 ✓");
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        console.log("Share failed", err);
+      }
+    }
+  } else {
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      ok = true;
+    } catch(e) {}
+    toast(ok ? "網址已複製到剪貼簿 ✓" : "分享失敗");
+  }
+}
+
+async function saveImage(){
+  if(!cur) return;
+  const canvas = document.createElement('canvas');
+  const scale = 2;
+  canvas.width = 800 * scale;
+  canvas.height = 1100 * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, 1100);
+  bgGrad.addColorStop(0, '#fcf8fd');
+  bgGrad.addColorStop(1, '#f3edf7');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, 800, 1100);
+
+  ctx.save();
+  ctx.strokeStyle = 'rgba(157, 127, 178, 0.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(400, 330, 240, 0, Math.PI * 2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(400, 330, 320, 0, Math.PI * 2); ctx.stroke();
+
+  ctx.fillStyle = 'rgba(157, 127, 178, 0.3)';
+  [[120, 100], [680, 150], [90, 850], [710, 800], [400, 950]].forEach(([px, py]) => {
+    ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI*2); ctx.fill();
+  });
+  ctx.restore();
+
+  ctx.strokeStyle = '#e6deee';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(30, 30, 740, 1040);
+
+  ctx.fillStyle = '#7e5d95';
+  ctx.font = 'italic 20px "Playfair Display", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Purpling Cards', 400, 85);
+
+  ctx.fillStyle = '#423b4a';
+  ctx.font = 'bold 30px "Noto Serif TC", serif';
+  ctx.fillText('✨🔮 紫靈牌卡 ✦ 線上占卜 🔮✨', 400, 130);
+
+  ctx.fillStyle = '#84788f';
+  ctx.font = '15px "Noto Serif TC", serif';
+  ctx.fillText(`占卜時間：${drawTime}`, 400, 168);
+
+  ctx.strokeStyle = '#e6deee';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(150, 195);
+  ctx.lineTo(650, 195);
+  ctx.stroke();
+
+  const cardsData = [
+    { title: '主星', data: cur.m, tone: '#8a6fc0' },
+    { title: '輔星', data: cur.a, tone: '#c47a58' },
+    { title: '長生', data: [cur.l[0] + cur.l[2], cur.l[1]], tone: '#5a9a82' }
+  ];
+
+  const cardWidth = 220;
+  const cardHeight = 320;
+  const gapX = 40;
+  const row1Y = 225;
+  const row2Y = 575;
+  const row1StartX = (800 - (cardWidth * 2 + gapX)) / 2;
+  const row2StartX = (800 - cardWidth) / 2;
+
+  cardsData.forEach((c, idx) => {
+    let cx, cy;
+    if (idx < 2) {
+      cx = row1StartX + idx * (cardWidth + gapX);
+      cy = row1Y;
+    } else {
+      cx = row2StartX;
+      cy = row2Y;
+    }
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(cx, cy, cardWidth, cardHeight, 18);
+    ctx.fill();
+
+    ctx.strokeStyle = '#e6deee';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.fillStyle = c.tone;
+    ctx.font = 'bold 15px "Noto Serif TC", serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(c.title, cx + 20, cy + 35);
+
+    ctx.fillStyle = '#423b4a';
+    ctx.font = 'bold 38px "Noto Serif TC", serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(c.data[0], cx + cardWidth / 2, cy + 175);
+
+    ctx.fillStyle = c.tone;
+    ctx.font = 'bold 15px "Noto Serif TC", serif';
+    ctx.fillText(c.data[1], cx + cardWidth / 2, cy + 240);
+  });
+
+  // 移除了占卜師提示文字，只保留祝福語與版權署名
+  ctx.fillStyle = '#84788f';
+  ctx.font = '14px "Noto Serif TC", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('願這組牌卡為你帶來指引與力量 ✦ 祝你有美好的一天', 400, 955);
+
+  ctx.font = '11px "Noto Serif TC", serif';
+  ctx.fillText('Made with 💜 by YAN-HAN', 400, 995);
+
+  canvas.toBlob(async (blob) => {
+    const file = new File([blob], `紫靈牌卡占卜結果_${drawTime.replace(/[\/\s:]/g, '')}.png`, { type: 'png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          title: '✨🔮紫靈牌卡 ✦ 線上占卜🔮✨',
+          text: `【紫靈牌卡占卜結果】\n占卜時間：${drawTime}`,
+          files: [file]
+        });
+        toast("分享成功 ✓");
+        return;
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.log("Share canceled or failed", err);
+        }
+        return;
+      }
+    }
+    const link = document.createElement('a');
+    link.download = file.name;
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    toast("圖片已儲存 ✓");
+  }, 'image/png');
+}
+
+$btnQuick.addEventListener("click", quickDraw);
+$btnManual.addEventListener("click", openManualModal);
+$modalCancel.addEventListener("click", () => { $modal.hidden = true; });
+$modalConfirm.addEventListener("click", confirmManualDraw);
+document.getElementById("copy").addEventListener("click", copy);
+document.getElementById("save-img").addEventListener("click", saveImage);
+document.getElementById("share-site").addEventListener("click", shareWebsite);
+document.getElementById("reset-draw").addEventListener("click", resetDraw);
+
+const $sndBtn = document.getElementById("snd-btn");
+$sndBtn.addEventListener("click",()=>{
+  mutedSnd = !mutedSnd;
+  $sndBtn.textContent = mutedSnd ? "♪ 抽卡音效 關" : "♪ 抽卡音效 開";
+  $sndBtn.setAttribute("aria-pressed", String(!mutedSnd));
+});
+
+const $bgmBtn = document.getElementById("bgm-btn");
+$bgmBtn.addEventListener("click",()=>{
+  mutedBgm = !mutedBgm;
+  if(!mutedBgm){
+    $bgmBtn.textContent = "♫ 背景音樂 開";
+    $bgmBtn.setAttribute("aria-pressed", "true");
+    startBgm();
+  } else {
+    $bgmBtn.textContent = "♫ 背景音樂 關";
+    $bgmBtn.setAttribute("aria-pressed", "false");
+    stopBgm();
+  }
+});
+</script>
+</body>
+</html>
